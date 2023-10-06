@@ -6,7 +6,7 @@ body{
 }
 
 #main-map{
-  width: 70%;
+  width: 75%;
   height: 100%;
   float: right;
   margin:0px;
@@ -19,35 +19,45 @@ body{
 
 .sidebar{
   float:left;
-  width:30%;
+  width:25%;
   height:100%;
   background-color: #191717;
 
 }
 
+.sidebar a{
+  text-decoration: none;
+}
+
 #main-header{
-  background-color: #7D7C7C;
+  padding:40px 0px;
 }
 
 #main-header h1{
-  padding: 5px 10px 5px 10px;
+  padding: 5px 20px 5px 20px;
   text-align: center;
   font-size: 24px;
   color: #F1EFEF;
   margin:0;
+  font-weight: bold;
 }
 
 .trip-selection{
   margin:0;
-  margin-bottom: 5px;
-  padding: 5px 0px;
-  text-align: center;
-  border: #CCC8AA solid 2px;
+  margin-bottom: 3px;
   min-height: 25px;
+  display:flex;
+  align-items: center;
+}
+
+.trip-selection:hover{
+  background-color: #414240;
 }
 
 .trip-selection h2{
   margin:0;
-  color: #F1EFEF;
-  font-weight: normal;
+  margin-left:25px;
+  color: #BBBCBA;
+  font-size: 12px;
+  font-weight: lighter;
 }

@@ -2,35 +2,47 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" charset="utf-8">
     <title>Trip Explorer</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body>
     <div class="sidebar">
       <header id = "main-header">
-        <h1>Kody's Trip Explorer</h1>
+        <h1>Trips</h1>
       </header>
-      <div class="trip-selection">
-        <h2>Blue Glacier</h2>
-      </div>
-      <div class="trip-selection">
-        <h2>Grand Loop</h2>
-      </div>
-      <div class="trip-selection">
-        <h2>Enchanted Valley</h2>
-      </div>
-      <div class="trip-selection">
-        <h2>Cape Alava</h2>
-      </div>
-      <div class="trip-selection">
-        <h2>High Divide</h2>
-      </div>
+      <a href="#">
+        <div class="trip-selection" id="blue-glacier">
+          <h2>Blue Glacier</h2>
+        </div>
+      </a>
+
+      <a href="#">
+        <div class="trip-selection" id="grand-loop">
+          <h2>Grand Loop</h2>
+        </div>
+      </a>
+      <a href="#">
+        <div class="trip-selection" id="enchanted-valley">
+          <h2>Enchanted Valley</h2>
+        </div>
+      </a>
+      <a href="#">
+        <div class="trip-selection" id="cape-alava">
+          <h2>Cape Alava</h2>
+        </div>
+      </a>
+      <a href="#">
+        <div class="trip-selection" id="high-divide">
+          <h2>High Divide</h2>
+        </div>
+      </a>
     </div>
     <section id="main-map">
       <!--Leaflet Map HTML-->
-       <iframe src="trip_map.html" title="leaftlet-map"></iframe>
+       <iframe src="trip_map.html" title="leaftlet-map" id="leaflet-map"></iframe>
     </section>
+    <script src="script/map.js"></script>
   </body>
 </html>
 <!--https://colorhunt.co/palette/f1efefccc8aa7d7c7c191717-->
