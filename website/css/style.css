@@ -1,0 +1,53 @@
+body{
+  background-color:#191717;
+  height: 100vh;
+  margin:0px;
+  font-family: Arial;
+}
+
+#main-map{
+  width: 70%;
+  height: 100%;
+  float: right;
+  margin:0px;
+}
+
+#main-map iframe{
+  height:100%;
+  width: 100%;
+}
+
+.sidebar{
+  float:left;
+  width:30%;
+  height:100%;
+  background-color: #191717;
+
+}
+
+#main-header{
+  background-color: #7D7C7C;
+}
+
+#main-header h1{
+  padding: 5px 10px 5px 10px;
+  text-align: center;
+  font-size: 24px;
+  color: #F1EFEF;
+  margin:0;
+}
+
+.trip-selection{
+  margin:0;
+  margin-bottom: 5px;
+  padding: 5px 0px;
+  text-align: center;
+  border: #CCC8AA solid 2px;
+  min-height: 25px;
+}
+
+.trip-selection h2{
+  margin:0;
+  color: #F1EFEF;
+  font-weight: normal;
+}
