@@ -4,8 +4,9 @@ import folium
 
 
 class Trip(object):
-    def __init__(self, gpx_file):
+    def __init__(self, gpx_file, name):
         self.gpx_file = gpx_file
+        self.name = name
         self.gpx = gpxpy.parse(gpx_file)
         self.trip_data = self.set_trip_data()
 
@@ -29,3 +30,9 @@ class Trip(object):
         (folium.PolyLine(self.trip_data[['latitude', 'longitude']], color='green', weight=4.5, opacity=.5)
          .add_to(trip_map))
         trip_map.save("trip_map.html")
+
+    def get_mean_latitude(self):
+        return self.trip_data['latitude'].mean()
+
+    def get_mean_longitude(self):
+        return self.trip_data['longitude'].mean()
