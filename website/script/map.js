@@ -1,5 +1,5 @@
 function flyto(lat, long, zoom) {
-  window.document.getElementById("main-map").firstElementChild.contentWindow.map_e87b5524d01ed2d6457568d067b6cee4.flyTo([lat, long],zoom);
+  window.document.getElementById("main-map").firstElementChild.contentWindow.eval(window.document.getElementById("main-map").firstElementChild.contentDocument.getElementsByClassName("folium-map")[0].id).flyTo([lat, long],zoom);
 }
 
 var capeAlava = document.getElementById('cape-alava');

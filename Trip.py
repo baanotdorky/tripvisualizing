@@ -1,6 +1,7 @@
 import pandas as pd
 import gpxpy
 import folium
+import sqlite3
 
 
 class Trip(object):
@@ -9,6 +10,10 @@ class Trip(object):
         self.name = name
         self.gpx = gpxpy.parse(gpx_file)
         self.trip_data = self.set_trip_data()
+        self.polyline = self.set_polyline()
+
+    def set_polyline(self):
+        return folium.PolyLine(self.trip_data[['latitude', 'longitude']], color='green', weight=4.5, opacity=.5)
 
     def set_trip_data(self):
         trip_data = pd.DataFrame()
@@ -27,8 +32,7 @@ class Trip(object):
                               attr='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
                                    'contributors &copy;<a href="https://carto.com/attributions">CARTO</a>',
                               )
-        (folium.PolyLine(self.trip_data[['latitude', 'longitude']], color='green', weight=4.5, opacity=.5)
-         .add_to(trip_map))
+        self.polyline.add_to(trip_map)
         trip_map.save("trip_map.html")
 
     def get_mean_latitude(self):
@@ -36,3 +40,14 @@ class Trip(object):
 
     def get_mean_longitude(self):
         return self.trip_data['longitude'].mean()
+
+    def upload_to_db(self):
+        con = sqlite3.connect("trips.db")
+        cur = con.cursor()
+        cur.execute("""
+            INSERT INTO trips(leaflet_id, name, latitude_centroid, longitude_centroid) VALUES
+                ({fname}, {name}, {lat}, {long})
+        """.format(fname="'"+self.polyline.get_name()+"'", name="'"+self.name+"'", lat=self.get_mean_latitude(),
+                   long=self.get_mean_longitude()))
+        con.commit()
+        con.close()

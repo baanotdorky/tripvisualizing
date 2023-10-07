@@ -20,6 +20,5 @@ class TripBook(object):
                                    'contributors &copy;<a href="https://carto.com/attributions">CARTO</a>',
                               )
         for trip in self.trips.keys():
-            (folium.PolyLine(self.trips[trip].trip_data[['latitude', 'longitude']], color='green', weight=4.5, opacity=.5)
-             .add_to(trip_map))
+            self.trips[trip].polyline.add_to(trip_map)
         trip_map.save("trip_map.html")

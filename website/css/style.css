@@ -3,6 +3,7 @@ body{
   height: 100vh;
   margin:0px;
   font-family: Arial;
+  overflow: hidden;
 }
 
 #main-map{
@@ -21,8 +22,8 @@ body{
   float:left;
   width:25%;
   height:100%;
+  overflow:scroll;
   background-color: #191717;
-
 }
 
 .sidebar a{
