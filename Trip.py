@@ -2,6 +2,7 @@ import pandas as pd
 import gpxpy
 import folium
 import sqlite3
+import json
 
 
 class Trip(object):
@@ -44,6 +45,10 @@ class Trip(object):
     def upload_to_db(self):
         con = sqlite3.connect("trips.db")
         cur = con.cursor()
+        # Check if trip already exists in db, and return if so
+        res = cur.execute("""SELECT * FROM trips WHERE name={name}""".format(name="'"+self.name+"'"))
+        if res.fetchone() is not None:
+            return
         cur.execute("""
             INSERT INTO trips(leaflet_id, name, latitude_centroid, longitude_centroid) VALUES
                 ({fname}, {name}, {lat}, {long})

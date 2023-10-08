@@ -1,18 +1,36 @@
-function flyto(lat, long, zoom) {
-  window.document.getElementById("main-map").firstElementChild.contentWindow.eval(window.document.getElementById("main-map").firstElementChild.contentDocument.getElementsByClassName("folium-map")[0].id).flyTo([lat, long],zoom);
+function flyto(evt) {
+  window.document.getElementById("main-map").firstElementChild.contentWindow.eval(window.document.getElementById("main-map").firstElementChild.contentDocument.getElementsByClassName("folium-map")[0].id).flyTo([evt.currentTarget.getAttribute("lat"), evt.currentTarget.getAttribute("long")],10);
 }
 
-var capeAlava = document.getElementById('cape-alava');
-capeAlava.onclick = function() {flyto(48.16311873849357, -124.70171091520145, 12)};
+var trips;
+fetch('JSON/trips.json')
+  .then(response => response.json())
+  .then(data => {
+    trips = data;
+    for(key in trips){
+      const link = document.createElement("a");
+      link.setAttribute("href","#");
+      link.setAttribute("id",trips[key].leaflet_id);
+      link.setAttribute("lat",trips[key].latitude_centroid);
+      link.setAttribute("long",trips[key].longitude_centroid);
+      const div1 = document.createElement("div");
+      const h2 = document.createElement("h2");
+      div1.setAttribute("class","trip-selection")
+      const node = document.createTextNode(trips[key].name);
+      h2.appendChild(node);
+      div1.appendChild(h2);
+      link.appendChild(div1);
+      const element = document.getElementById("main-header");
+      element.appendChild(link);
+      console.log(trips[key].leaflet_id)
+      window.document.getElementById(trips[key].leaflet_id).addEventListener("click", flyto);
+    }
+   }
+   );
 
-var blueGlacier = document.getElementById('blue-glacier');
-blueGlacier.onclick = function() {flyto(47.83898204591296, -123.7557950794418, 11)};
 
-var enchantedValley = document.getElementById('enchanted-valley');
-enchantedValley.onclick = function() {flyto(47.65944593234531, -123.40867926574853, 10.75)};
 
-var highDivide = document.getElementById('high-divide');
-highDivide.onclick = function() {flyto(47.92655057801194, -123.80008944052517, 12)};
 
-var grandLoop = document.getElementById('grand-loop');
-grandLoop.onclick = function() {flyto(47.926704128258145, -123.30802808632272, 11)};
+
+
+
