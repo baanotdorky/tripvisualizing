@@ -1,5 +1,8 @@
 function flyto(evt) {
-  window.document.getElementById("main-map").firstElementChild.contentWindow.eval(window.document.getElementById("main-map").firstElementChild.contentDocument.getElementsByClassName("folium-map")[0].id).flyTo([evt.currentTarget.getAttribute("lat"), evt.currentTarget.getAttribute("long")],10);
+  const fmap=window.document.getElementById("main-map").firstElementChild.contentWindow.eval(window.document.getElementById("main-map").firstElementChild.contentDocument.getElementsByClassName("folium-map")[0].id);
+  const bounds = window.document.getElementById("main-map").firstElementChild.contentWindow.eval(evt.currentTarget.getAttribute("id")).getBounds();
+  fmap.flyToBounds(bounds);
+
 }
 
 var trips;

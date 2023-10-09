@@ -11,7 +11,7 @@ class TripBook(object):
         self.trips = {}
 
     def add_trip(self, trip: Trip):
-        self.trips[trip.name] = trip
+        self.trips[trip.fname] = trip
 
     def plot_trips(self):
         trip_map = folium.Map(location=(47.947711834842806, -123.7691920),

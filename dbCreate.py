@@ -5,7 +5,8 @@ def create_table():
     cur.execute("""CREATE TABLE IF NOT EXISTS trips (
                     id integer PRIMARY KEY,
                     leaflet_id varchar,
-                    name text NOT NULL,
+                    fname text NOT NULL,
+                    name text,
                     latitude_centroid decimal(10),
                     longitude_centroid decimal(10));""")
 
@@ -38,5 +39,6 @@ if __name__ == '__main__':
     # See if trip table already exists. If it doesn't, create it.
     #cur = con.cursor()
     #create_table()
+    #delete_table()
     to_JSON()
 

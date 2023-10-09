@@ -6,9 +6,9 @@ import json
 
 
 class Trip(object):
-    def __init__(self, gpx_file, name):
+    def __init__(self, gpx_file, fname):
         self.gpx_file = gpx_file
-        self.name = name
+        self.fname = fname
         self.gpx = gpxpy.parse(gpx_file)
         self.trip_data = self.set_trip_data()
         self.polyline = self.set_polyline()
@@ -46,13 +46,13 @@ class Trip(object):
         con = sqlite3.connect("trips.db")
         cur = con.cursor()
         # Check if trip already exists in db, and return if so
-        res = cur.execute("""SELECT * FROM trips WHERE name={name}""".format(name="'"+self.name+"'"))
+        res = cur.execute("""SELECT * FROM trips WHERE fname={fname}""".format(fname="'"+self.fname+"'"))
         if res.fetchone() is not None:
             return
         cur.execute("""
-            INSERT INTO trips(leaflet_id, name, latitude_centroid, longitude_centroid) VALUES
-                ({fname}, {name}, {lat}, {long})
-        """.format(fname="'"+self.polyline.get_name()+"'", name="'"+self.name+"'", lat=self.get_mean_latitude(),
+            INSERT INTO trips(leaflet_id, fname, latitude_centroid, longitude_centroid) VALUES
+                ({id}, {fname}, {lat}, {long})
+        """.format(id="'"+self.polyline.get_name()+"'", fname="'"+self.fname+"'", lat=self.get_mean_latitude(),
                    long=self.get_mean_longitude()))
         con.commit()
         con.close()
