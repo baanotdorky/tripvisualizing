@@ -2,6 +2,7 @@ import sqlite3
 import json
 
 def create_table():
+    """Creates trips database in SQLite server, if it does not already exist."""
     cur.execute("""CREATE TABLE IF NOT EXISTS trips (
                     id integer PRIMARY KEY,
                     leaflet_id varchar,
@@ -12,10 +13,12 @@ def create_table():
 
 
 def delete_table():
+    """Deletes trips table from SQLite server."""
     cur.execute("DROP TABLE trips")
     print('Trips table deleted.')
 
 def to_JSON( json_str = True ):
+    """Converts entire trips database to JSON and saves to JSON directory: JSON/trips.json"""
     conn = sqlite3.connect('trips.db')
     conn.row_factory = sqlite3.Row
     db = conn.cursor()
