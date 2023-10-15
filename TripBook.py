@@ -2,7 +2,7 @@ import pandas as pd
 import gpxpy
 import folium
 
-from tripvisualizing.Trip import Trip
+from Trip import Trip
 
 
 class TripBook(object):

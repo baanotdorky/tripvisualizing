@@ -37,11 +37,11 @@ def to_JSON( json_str = True ):
 
 
 if __name__ == '__main__':
-    #con = sqlite3.connect("trips.db")
+    con = sqlite3.connect("trips.db")
 
     # See if trip table already exists. If it doesn't, create it.
-    #cur = con.cursor()
-    #create_table()
+    cur = con.cursor()
+    create_table()
     #delete_table()
-    to_JSON()
+    #to_JSON()
 
