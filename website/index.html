@@ -5,6 +5,13 @@
     <meta http-equiv="content-type" charset="utf-8">
     <title>Trip Explorer</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!--Leaflet stylesheets and script-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
   </head>
   <body>
     <div class="sidebar" id="sidebar">
@@ -20,11 +27,12 @@
       </a>
       -->
     </div>
-    <section id="main-map">
+    <div id="map">
       <!--Leaflet Map HTML-->
-       <iframe src="trip_map.html" title="leaftlet-map" id="leaflet-map"></iframe>
-    </section>
+
+    </div>
+  <script src="script/map.js"></script>
   </body>
 </html>
-<script src="script/map.js"></script>
+
 <!--https://colorhunt.co/palette/f1efefccc8aa7d7c7c191717-->
