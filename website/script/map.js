@@ -1,4 +1,4 @@
-let map = L.map('map').setView([46.63698077249043, -122.37537602527277], 10);
+let map = L.map('map').setView([47.601257785634616, -122.3350775617381], 8);
 let polylines = new Array();
 
 L.tileLayer(
@@ -54,8 +54,22 @@ function displayTripButtons(trips) {
 function plotTrips(trips) {
     for (let trip of trips) {
         let latlng = JSON.parse(trip.latlng);
-        let temp = L.polyline(latlng, {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 4.5}
-                    );
+        let temp = L.polyline(latlng, {"bubblingMouseEvents": true,
+                                        "color": "green",
+                                        "dashArray": null,
+                                        "dashOffset": null,
+                                        "fill": false,
+                                        "fillColor": "green",
+                                        "fillOpacity": 0.2,
+                                        "fillRule": "evenodd",
+                                        "lineCap": "round",
+                                        "lineJoin": "round",
+                                        "noClip": false,
+                                        "opacity": 0.5,
+                                        "smoothFactor": 1.0,
+                                        "stroke": true,
+                                        "weight": 4.5}
+                            );
         temp.addTo(map)
         let polyob = {
             id: trip.id,
