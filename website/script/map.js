@@ -24,7 +24,16 @@ function getTrips() {
     })
 }
 
+function sorttripsalpha(trips) {
+    let triplist=[]
+    for (let trip of trips) {
+        triplist.push({name: trip.name, id:trip.id})
+    }
+    triplist.sort((a, b) => a.name < b.name ? -1 : 1)
+    return triplist
+}
 function displayTripButtons(trips) {
+
     for (let trip of trips) {
         // Create sidebar buttons
         const link = document.createElement("a");
@@ -58,20 +67,56 @@ function plotTrips(trips) {
 
 function addEventListenersTrips(trips) {
     for (let trip of trips) {
+        window.document.getElementById(trip.id).addEventListener("click", tripbuttonhighlighter);
         window.document.getElementById(trip.id).addEventListener("click", flyTo);
-    }
 
+    }
+}
+
+function tripbuttonhighlighter(evt) {
+    let tripselectors = window.document.getElementsByClassName("trip-selection");
+    for (let tripselector of tripselectors) {
+        tripselector.style.backgroundColor='';
+    }
+    evt.currentTarget.firstElementChild.style.backgroundColor = '#414240';
 }
 
 function flyTo(evt) {
     let bounds = polylines.find(x => x.id == evt.currentTarget.getAttribute("id")).polyline.getBounds()
     map.flyToBounds(bounds);
 }
+
+function addpolylinepopup(polylinesarray, trips) {
+    for (let polyLine of polylines) {
+        polyLine.polyline.on('mouseover', function() {
+            this.mySavedOptions = this.options.weight;
+            this.setStyle({
+                weight: 8
+            });
+        });
+        polyLine.polyline.on('mouseout', function() {
+            this.setStyle({weight: 4.5}
+            );
+        });
+        var popupContent = String(trips.find(x => x.id == polyLine.id).name);
+        polyLine.polyline.bindPopup(popupContent);
+
+        polyLine.polyline.on('mouseover', function (e) {
+            this.openPopup(e.latlng);
+        });
+        polyLine.polyline.on('mouseout', function (e) {
+            this.closePopup();
+        });
+    }
+}
+
 getTrips()
     .then(function (trips) {
-        displayTripButtons(trips);
+        let triplist= sorttripsalpha(trips)
+        displayTripButtons(triplist);
         plotTrips(trips);
         addEventListenersTrips(trips);
+        addpolylinepopup(polylines,trips);
     })
 
 
