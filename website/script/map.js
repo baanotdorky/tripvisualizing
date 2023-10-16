@@ -113,7 +113,13 @@ function addpolylinepopup(polylinesarray, trips) {
             );
         });
         var popupContent = String(trips.find(x => x.id == polyLine.id).name);
-        polyLine.polyline.bindPopup(popupContent);
+        var customOptions =
+        {
+        'maxWidth': '400',
+        'width': '200',
+        'className' : 'popupCustom'
+        }
+        polyLine.polyline.bindPopup(popupContent, customOptions);
 
         polyLine.polyline.on('mouseover', function (e) {
             this.openPopup(e.latlng);

@@ -62,3 +62,10 @@ body{
   font-size: 12px;
   font-weight: lighter;
 }
+
+.popupCustom .leaflet-popup-tip,
+.popupCustom .leaflet-popup-content-wrapper {
+    background: rgba(96, 95, 95, 0.34);
+    color: #bbc5e5;
+    border-radius: 0;
+}
