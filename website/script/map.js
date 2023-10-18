@@ -18,7 +18,7 @@ L.tileLayer(
 
 function getTrips() {
     return new Promise(function(resolve,reject){
-        fetch('JSON/trips.json')
+        fetch('http://127.0.0.1:5000/trips')
             .then(response => response.json())
             .then(data => resolve(data))
     })
